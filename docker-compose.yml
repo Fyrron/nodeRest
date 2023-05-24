@@ -1,15 +1,5 @@
+version: '3'
 services:
-  #MongoDb
-  mongo_db:
-    image: mongo:latest
-    container_name: db_container
-    restart: always
-    ports:
-      - 2717:27017
-    volumes:
-      - mongo_db:/data/db
-
-  #NodeApi
   api:
     build: .
     ports:
@@ -18,11 +8,18 @@ services:
       - .:/usr/src/app
     environment:
       PORT: 3000
-      MONGODB_URI: mongodb://mongo_db:27017
-      DB_NAME: my_db
-      NAME: Testing
     depends_on:
-      - mongo_db
+      - db
 
-volumes:
-  mongo_db: {}
+  db:
+    image: mysql:latest
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: node
+      MYSQL_USER: test
+      MYSQL_PASSWORD: 123123
