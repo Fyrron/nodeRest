@@ -1,0 +1,28 @@
+services:
+  #MongoDb
+  mongo_db:
+    image: mongo:latest
+    container_name: db_container
+    restart: always
+    ports:
+      - 2717:27017
+    volumes:
+      - mongo_db:/data/db
+
+  #NodeApi
+  api:
+    build: .
+    ports:
+      - 4000:3000
+    volumes:
+      - .:/usr/src/app
+    environment:
+      PORT: 3000
+      MONGODB_URI: mongodb://mongo_db:27017
+      DB_NAME: my_db
+      NAME: TrulyMittal
+    depends_on:
+      - mongo_db
+
+volumes:
+  mongo_db: {}
