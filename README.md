@@ -2,4 +2,3 @@
 
 - Features to implement:
 
-2. Lint and unity testing
