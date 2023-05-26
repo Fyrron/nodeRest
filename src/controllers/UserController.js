@@ -2,11 +2,24 @@ const userModel = require('../models/UserModel')
 
 module.exports = {
     getAllUsers : (req, res) => {
-        const users = [
-            {id: 1, name: 'test1'},
-            {id: 2, name: 'test2'},
-            {id: 3, name: 'test3'},
-        ]
-        res.json(users)
+        userModel.getAllUsers()
+        .then(results => {
+            res.json(results)
+        })
+        .catch(err => {
+            console.log(err)
+        
+        })
+    },
+
+    createUser : (req, res) => {
+        const {username, email, password } = req.body
+        userModel.createUser(username, email, password)
+        .then(results => {
+            res.json('User Created')
+        })
+        .catch(err => {
+            res.json('There was an error processing your request: ' + err)
+        })
     }
 }
