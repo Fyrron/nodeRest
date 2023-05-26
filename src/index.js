@@ -1,8 +1,10 @@
 const express = require('express')
 const app = express()
 const db = require('./db')
+const createTables = require('./lib/createTables')
 const cors = require('cors')
 
+createTables()
 
 const homeRoute = require('./routes/Home')
 const vacationsRoute = require('./routes/Vacations')
