@@ -10,13 +10,6 @@ function createTables() {
             email VARCHAR(255) NOT NULL UNIQUE,
             password VARCHAR(255) NOT NULL
         )
-        `,
-        `
-        CREATE TABLE IF NOT EXISTS vacations (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            destination VARCHAR(255) NOT NULL,
-            description VARCHAR(255) NOT NULL
-        )
         `
     ]
 
