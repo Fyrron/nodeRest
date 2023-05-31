@@ -1,11 +1,10 @@
-const userModel = require('../models/UserModel')
+const User = require('../models/UserModel')
 const bcrypt = require('bcryptjs')
 
 module.exports = {
     getAllUsers : async (req, res) => {
         try {
-            const results = await userModel.getAllUsers()
-
+            const results = await User.findAll();
             res.status(200).json(results)
         } catch (err) {
             res.status(500).json({
@@ -17,7 +16,11 @@ module.exports = {
 
     getUserById : async (req, res) => {
         try {
-            const results = await userModel.getUserById(req.params.id)
+            const results = await User.findAll({
+                where: {
+                    id: req.params.id
+                }
+            });
         
             res.status(200).json(results)
         } catch (err) {
@@ -30,8 +33,12 @@ module.exports = {
 
     getUserByEmail : async (req, res) => {
         try {
-            const results = await userModel.getUserByEmail(req.params.email)
-        
+            const results = await User.findAll({
+                where: {
+                    email: req.params.email
+                }
+            });
+
             res.status(200).json(results)
         } catch (err) {
             res.status(500).json({
@@ -47,7 +54,14 @@ module.exports = {
         
             const encryptedPassword = await bcrypt.hash(password, 10)
 
-            await userModel.createUser(username, email, encryptedPassword)
+            const results = await User.create({
+                username: username,
+                email: email,
+                password: encryptedPassword
+            });
+
+            console.log(results)
+
 
             res.status(200).json({
                 'success': true,
@@ -59,8 +73,6 @@ module.exports = {
                 'response': 'Internal server error'
             })
         }
-
-        
     },
 
     updateUser: async (req, res) => {
@@ -69,7 +81,15 @@ module.exports = {
 
             const encryptedPassword = await bcrypt.hash(password, 10)
 
-            await userModel.updateUser(req.params.id, username, email, encryptedPassword)
+            await User.update({
+                username: username,
+                email: email,
+                password: encryptedPassword
+            }, {
+                where: {
+                    id: req.params.id
+                }
+            });
 
             res.status(200).json({
                 'success': true,
@@ -85,8 +105,13 @@ module.exports = {
 
     deleteUser: async (req, res) => {
         try {
-            await userModel.deleteUser(req.params.id)
-        
+
+            await User.destroy({
+                where: {
+                    id: req.params.id
+                }
+            });
+
             res.status(200).json({
                 'success': true,
                 'response': 'User Deleted'
