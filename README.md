@@ -2,13 +2,13 @@
 
 - Features done:
 
-1. Docker enviroment
+Docker enviroment
 
-2. Created simple user CRUD
+Created simple user CRUD
 
-3. Middleware route validation with express-validator
+Middleware route validation with express-validator
 
-4. JWT auth
+JWT auth
 
 - Features to implement:
 
