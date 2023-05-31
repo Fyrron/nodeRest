@@ -14,11 +14,15 @@
 
 1. Revoke jwt token after user create another
 
-2. Landing page with react
+2. Better way to send json responses
 
-3. User creation page
+3. Implement ESLint
 
-4. User login
+4. Landing page with react
+
+5. User creation page
+
+6. User login
 
 
 
