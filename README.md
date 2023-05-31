@@ -1,30 +1,30 @@
 ### Node.js REST API using Express, mysql and docker.
 
-- Features done:
+Features done:
 
-Docker enviroment
+- Docker enviroment
 
-Created simple user CRUD
+- Created simple user CRUD
 
-Middleware route validation with express-validator
+- Middleware route validation with express-validator
 
-JWT auth
+- JWT auth
 
-- Features to implement:
+Features to implement:
 
-Using sequelize in model (Currently working on)
+- Using sequelize in model (Currently working on)
 
-Revoke jwt token after user create another
+- Revoke jwt token after user create another
 
-Better way to send json responses
+- Better way to send json responses
 
-Implement ESLint
+- Implement ESLint
 
-Landing page with react
+- Landing page with react
 
-User creation page
+- User creation page
 
-User login
+- User login
 
 
 ### Please generate the private key on the root directory
