@@ -12,17 +12,19 @@
 
 - Features to implement:
 
-1. Revoke jwt token after user create another
+Using sequelize in model (Currently working on)
 
-2. Better way to send json responses
+Revoke jwt token after user create another
 
-3. Implement ESLint
+Better way to send json responses
 
-4. Landing page with react
+Implement ESLint
 
-5. User creation page
+Landing page with react
 
-6. User login
+User creation page
+
+User login
 
 
 ### Please generate the private key on the root directory
