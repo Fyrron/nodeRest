@@ -3,7 +3,7 @@ const db = require('../db')
 class UserModel {
     async getAllUsers() {
         return new Promise (resolve => {
-            db.query('SELECT id, username, email FROM users', (err, results) => {
+            db.query('SELECT * FROM users', (err, results) => {
                 if (err) throw err
                 resolve(results)
             })
@@ -12,7 +12,7 @@ class UserModel {
 
     async getUserById(id) {
         return new Promise (resolve => {
-            db.query(`SELECT id, username, email FROM users WHERE id = ${id}`, (err, results) => {
+            db.query(`SELECT * FROM users WHERE id = ${id}`, (err, results) => {
                 if(err) throw err
                 resolve(results)
             })
@@ -21,7 +21,7 @@ class UserModel {
 
     async getUserByEmail(email) {
         return new Promise (resolve => {
-            db.query(`SELECT id, username, email FROM users WHERE email = '${email}'`, (err, results) => {
+            db.query(`SELECT * FROM users WHERE email = '${email}'`, (err, results) => {
                 if(err) throw err
                 resolve(results)
             }) 
