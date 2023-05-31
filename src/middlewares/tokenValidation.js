@@ -1,7 +1,7 @@
 const express = require('express')
 const { body, validationResult } = require('express-validator')
 const router = express.Router()
-const userModel = require('../models/UserModel')
+const User = require('../models/UserModel')
 const bcrypt = require('bcryptjs')
 
 router.post(
@@ -21,7 +21,11 @@ router.post(
 
             const { email, password } = req.body
 
-            const results = await userModel.getUserByEmail(email)
+            const results = await User.findAll({
+                where: {
+                    email: email
+                }
+            })
 
             if(results.length) {
                 let user = results[0]
@@ -31,14 +35,14 @@ router.post(
                 if(!compare) {
                     return res.status(400).json({
                         success: false,
-                        response: 'The password is wrong'
+                        response: 'Wrong credentials'
                     })
                 }
                 next()
             } else {
                 return res.status(400).json({
                     success: false,
-                    response: 'No user with that email'
+                    response: 'Wrong credentials'
                 })
             }
         } catch (err) {

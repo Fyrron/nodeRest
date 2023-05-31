@@ -3,9 +3,6 @@ const express = require('express')
 const app = express()
 const db = require('./db')
 const cors = require('cors')
-const createTables = require('./lib/createTables')
-
-createTables()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -20,13 +17,15 @@ const auth = require('./auth/auth')
 
 app.use('/api', cors())
 
-app.use('/api/token', tokenValidation)
-app.use('/api/token', tokenRoute)
+app.use('/api/token', [tokenValidation, tokenRoute])
 
-app.use('/api/users', auth)
-app.use('/api/users', userValidation)
-app.use('/api/users', userRoute)
+app.use('/api/users', [auth, userValidation, userRoute])
 
-app.listen(process.env.SERVER_PORT, () => {
-    console.log('Server is up on port 4000.')
+
+db.sync().then((res) => {
+    app.listen(process.env.SERVER_PORT, () => {
+        console.log('Server is up on port 4000.')
+    })
+}).catch((err) => {
+    console.log('Internal server error: ' + err)
 })

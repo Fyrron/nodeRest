@@ -1,7 +1,7 @@
 const express = require('express')
 const { body, param, validationResult } = require('express-validator')
 const router = express.Router()
-const userModel = require('../models/UserModel')
+const User = require('../models/UserModel')
 const bcrypt = require('bcryptjs')
 
 router.post(
@@ -17,7 +17,11 @@ router.post(
         }
 
         try {
-            const results = await userModel.getUserByEmail(req.body.email)
+            const results = await User.findAll({
+                where: {
+                    email: req.body.email
+                }
+            })
 
             if(results.length) {
                 return res.status(400).json({
@@ -49,12 +53,16 @@ router.get(
             })
         }
         try {
-            const results = await userModel.getUserByEmail(req.params.email)
+            const results = await User.findAll({
+                where: {
+                    email: req.params.email
+                }
+            });
 
             if(!results.length) {
                 return res.status(400).json({
                     'success': false,
-                    'response': 'Email does not exist'
+                    'response': 'User does not exist'
                 })
             }
 
@@ -68,7 +76,7 @@ router.get(
     }
 )
 
-router.get(
+router.use(
     '/:id$',
     param('id').trim().isInt(),
     async (req, res, next) => {
@@ -82,7 +90,11 @@ router.get(
         }
 
         try {
-            const results = await userModel.getUserById(req.params.id)
+            const results = await User.findAll({
+                where: {
+                    id: req.params.id
+                }
+            });
 
             if(!results.length) {
                 return res.status(400).json({
@@ -117,7 +129,11 @@ router.put(
         }
 
         try {
-            const results = await userModel.getUserByEmail(req.body.email)
+            const results = await User.findAll({
+                where: {
+                    email: req.body.email
+                }
+            })
 
             if(results.length) {
                 if(results[0].id != req.params.id) {
