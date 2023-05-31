@@ -27,6 +27,6 @@ app.use('/api/users', auth)
 app.use('/api/users', userValidation)
 app.use('/api/users', userRoute)
 
-app.listen(3000, () => {
+app.listen(process.env.SERVER_PORT, () => {
     console.log('Server is up on port 4000.')
 })
