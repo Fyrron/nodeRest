@@ -10,9 +10,9 @@ Features done:
 
 - JWT auth
 
-Features to implement:
+- Sequelize
 
-- Using sequelize in model (Currently working on)
+Features to implement:
 
 - Revoke jwt token after user create another
 
