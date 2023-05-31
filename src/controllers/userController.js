@@ -8,7 +8,10 @@ module.exports = {
 
             res.status(200).json(results)
         } catch (err) {
-            res.status(500).json('Internal server error')
+            res.status(500).json({
+                'success': false,
+                'response': 'Internal server error'
+            })
         }
     },
 
@@ -18,7 +21,10 @@ module.exports = {
         
             res.status(200).json(results)
         } catch (err) {
-            res.status(500).json('Internal server error')
+            res.status(500).json({
+                'success': false,
+                'response': 'Internal server error'
+            })
         }
     },
 
@@ -28,7 +34,10 @@ module.exports = {
         
             res.status(200).json(results)
         } catch (err) {
-            res.status(500).json('Internal server error')
+            res.status(500).json({
+                'success': false,
+                'response': 'Internal server error'
+            })
         }
     },
 
@@ -40,9 +49,15 @@ module.exports = {
 
             await userModel.createUser(username, email, encryptedPassword)
 
-            res.status(200).json('User Created')
+            res.status(200).json({
+                'success': true,
+                'response': 'User Created'
+            })
         } catch (err) {
-            res.status(500).json('Internal server error')
+            res.status(500).json({
+                'success': false,
+                'response': 'Internal server error'
+            })
         }
 
         
@@ -56,9 +71,15 @@ module.exports = {
 
             await userModel.updateUser(req.params.id, username, email, encryptedPassword)
 
-            res.status(200).json('User Updated')
+            res.status(200).json({
+                'success': true,
+                'response': 'User Updated'
+            })
         } catch (err) {
-            res.status(500).json('Internal server error')
+            res.status(500).json({
+                'success': false,
+                'response': 'Internal server error'
+            })
         }
     },
 
@@ -66,9 +87,15 @@ module.exports = {
         try {
             await userModel.deleteUser(req.params.id)
         
-            res.status(200).json('User Deleted')
+            res.status(200).json({
+                'success': true,
+                'response': 'User Deleted'
+            })
         } catch (err) {
-            res.status(500).json('Internal server error')
+            res.status(500).json({
+                'success': false,
+                'response': 'Internal server error'
+            })
         }
     },
 }

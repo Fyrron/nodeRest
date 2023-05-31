@@ -20,12 +20,18 @@ router.post(
             const results = await userModel.getUserByEmail(req.body.email)
 
             if(results.length) {
-                return res.status(400).json('An user with this email already exists')
+                return res.status(400).json({
+                    'success': false,
+                    'response': 'An user with this email already exists'
+                })
             }
 
             next()
         } catch (err) {
-            return res.status(500).json('There was an error in the application')
+            return res.status(500).json({
+                'success': false,
+                'response': 'Internal server error'
+            })
         }
     }
 )
@@ -37,18 +43,27 @@ router.get(
         const result = validationResult(req)
 
         if(result['errors'].length) {
-            return res.status(400).json(result)
+            return res.status(400).json({
+                'success': false,
+                'response': result
+            })
         }
         try {
             const results = await userModel.getUserByEmail(req.params.email)
 
             if(!results.length) {
-                return res.status(400).json('Email does not exist')
+                return res.status(400).json({
+                    'success': false,
+                    'response': 'Email does not exist'
+                })
             }
 
             next()
         } catch (err) {
-            return res.status(500).json('There was an error in the application')
+            return res.status(500).json({
+                'success': false,
+                'response': 'Internal server error'
+            })
         }
     }
 )
@@ -60,19 +75,28 @@ router.get(
         const result = validationResult(req)
 
         if(result['errors'].length) {
-            return res.status(400).json(result)
+            return res.status(400).json({
+                'success': false,
+                'response': result
+            })
         }
 
         try {
             const results = await userModel.getUserById(req.params.id)
 
             if(!results.length) {
-                return res.status(400).json('ID does not exist')
+                return res.status(400).json({
+                    'success': false,
+                    'response': 'ID does not exist'
+                })
             }
 
             next()
         } catch (err) {
-            return res.status(500).json('There was an error in the application')
+            return res.status(500).json({
+                'success': false,
+                'response': 'Internal server error'
+            })
         }
     }
 )
@@ -86,7 +110,10 @@ router.put(
         const result = validationResult(req)
 
         if(result['errors'].length) {
-            return res.status(400).json(result)
+            return res.status(400).json({
+                'success': false,
+                'response': result
+            })
         }
 
         try {
@@ -94,13 +121,19 @@ router.put(
 
             if(results.length) {
                 if(results[0].id != req.params.id) {
-                    return res.status(400).json('There is an user with that email')
+                    return res.status(400).json({
+                        'success': false,
+                        'response': 'There is an user with that email'
+                    })
                 }
             }
 
             next()
         } catch (err) {
-            return res.status(500).json('There was an error in the application')
+            return res.status(500).json({
+                'success': false,
+                'response': 'Internal server error'
+            })
         }
     }
 )
