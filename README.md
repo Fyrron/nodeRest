@@ -1,4 +1,4 @@
-### Node.js REST API using Express, mysql and docker.
+### Node.js REST API using Express, MySQL, Sequelize and Docker.
 
 Features done:
 
