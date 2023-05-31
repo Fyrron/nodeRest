@@ -25,4 +25,6 @@
 6. User login
 
 
+### Please generate the private key on the root directory
 
+openssl genrsa -out private.key 2048
