@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const jwt = require('jsonwebtoken')
 const fs = require('fs')
+const jwt = require('jsonwebtoken')
 
 router.use(
     '/', 
@@ -25,7 +25,7 @@ router.use(
         if(err) {
             return res.json({
                 success: false,
-                message: 'User not allowed to access user resource because the token is wrong'
+                message: 'User not allowed to access user resource'
             })
         }
         next()

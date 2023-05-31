@@ -1,13 +1,11 @@
 const userModel = require('../models/UserModel')
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-const fs = require('fs')
 
 module.exports = {
     getAllUsers : async (req, res) => {
         try {
-            await userModel.getAllUsers()
-        
+            const results = await userModel.getAllUsers()
+
             res.status(200).json(results)
         } catch (err) {
             res.status(500).json('Internal server error')
@@ -16,7 +14,7 @@ module.exports = {
 
     getUserById : async (req, res) => {
         try {
-            await userModel.getUserById(req.params.id)
+            const results = await userModel.getUserById(req.params.id)
         
             res.status(200).json(results)
         } catch (err) {
@@ -26,7 +24,7 @@ module.exports = {
 
     getUserByEmail : async (req, res) => {
         try {
-            await userModel.getUserByEmail(req.params.email)
+            const results = await userModel.getUserByEmail(req.params.email)
         
             res.status(200).json(results)
         } catch (err) {
@@ -73,16 +71,4 @@ module.exports = {
             res.status(500).json('Internal server error')
         }
     },
-
-    generateTokenUser: async (req, res) => {
-        try {
-            const privateKey = fs.readFileSync(process.cwd() + '/private.key')
-            
-            jwt.sign({email: req.body.email, role: 'admin'}, privateKey, {expiresIn: '24h', algorithm: 'RS256'}, (err, token) => {
-                res.json({token: token})
-            })
-        } catch (err) {
-            res.status(500).json('Internal server error')
-        }
-    }   
 }
