@@ -15,4 +15,7 @@ router.delete('/:id', controller.deleteUser)
 
 router.get('/email/:email', controller.getUserByEmail)
 
+router.post('/token', controller.generateTokenUser)
+
+
 module.exports = router
