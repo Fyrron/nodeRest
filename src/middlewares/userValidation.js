@@ -1,8 +1,7 @@
 const express = require('express')
 const { body, param, validationResult } = require('express-validator')
 const router = express.Router()
-const User = require('../models/UserModel')
-const bcrypt = require('bcryptjs')
+const { User } = require('../models')
 
 router.post(
     '/$',
