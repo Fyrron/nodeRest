@@ -10,7 +10,14 @@ Features done:
 
 - JWT auth
 
-- Sequelize
+- Sequelize 
+
+Currently working on:
+
+- Sequelize (Working on implementing seeders and migrations)
+
+- Some way of passing env variables to config.json 
+
 
 Features to implement:
 
@@ -30,3 +37,8 @@ Features to implement:
 ### Please generate the private key on the root directory
 
 openssl genrsa -out private.key 2048
+
+
+### Seed db to create admin user to test the api
+
+npx sequelize-cli db:seed:all
