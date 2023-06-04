@@ -4,6 +4,7 @@ const app = express()
 const cors = require('cors')
 const db = require('./models')
 
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
@@ -19,11 +20,9 @@ app.use('/api', cors())
 
 app.use('/api/token', [tokenValidation, tokenRoute])
 
-app.use('/api/users', [auth, userValidation, userRoute])
+app.use('/api/users', [userValidation, userRoute])
 
-
-db.sequelize.sync().then((req) => {
-    app.listen(process.env.SERVER_PORT, () => {
-            console.log('Server is up on port 4000.')
-    })
+app.listen(process.env.SERVER_PORT, () => {
+    console.log('Server is up on port 4000.')
 })
+

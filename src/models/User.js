@@ -1,5 +1,6 @@
 'use strict'
 
+//module.exports is a function that returns User.
 module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define('User', {
         username: {
