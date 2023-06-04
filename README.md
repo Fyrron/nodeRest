@@ -14,10 +14,7 @@ Features done:
 
 Currently working on:
 
-- Sequelize (Working on implementing seeders and migrations)
-
 - Some way of passing env variables to config.json 
-
 
 Features to implement:
 
@@ -39,6 +36,6 @@ Features to implement:
 openssl genrsa -out private.key 2048
 
 
-### Seed db to create admin user to test the api
+### Run migrations
 
-npx sequelize-cli db:seed:all
+./scripts/migrate.sh
