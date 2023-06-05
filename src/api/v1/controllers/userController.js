@@ -54,14 +54,11 @@ module.exports = {
         
             const encryptedPassword = await bcrypt.hash(password, 10)
 
-            const results = await User.create({
+            await User.create({
                 username: username,
                 email: email,
                 password: encryptedPassword
             });
-
-            console.log(results)
-
 
             res.status(200).json({
                 'success': true,
@@ -105,7 +102,6 @@ module.exports = {
 
     deleteUser: async (req, res) => {
         try {
-
             await User.destroy({
                 where: {
                     id: req.params.id
