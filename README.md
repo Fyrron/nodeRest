@@ -31,7 +31,7 @@ Features to implement:
 - User login
 
 
-### Please generate the private key on the root directory
+### Please generate the private key on the api/v1 directory
 
 openssl genrsa -out private.key 2048
 

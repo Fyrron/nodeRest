@@ -1,4 +1,4 @@
-node_modules
+src/api/v1/node_modules
+src/api/v1package-lock.json
+src/api/v1/private.key
 data
-package-lock.json
-private.key
