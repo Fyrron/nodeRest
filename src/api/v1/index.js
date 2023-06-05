@@ -20,4 +20,6 @@ app.use('/api/token', [tokenValidation, tokenRoute])
 
 app.use('/api/users', [auth, userValidation, userRoute])
 
-module.exports = app
+app.listen(process.env.PORT, () => {
+    console.log('Server is up on port 4000.')
+})
