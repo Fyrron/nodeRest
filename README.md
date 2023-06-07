@@ -14,21 +14,17 @@ Features done:
 
 Currently working on:
 
-- Some way of passing env variables to config.json 
+- User creation page
+
+- User login
 
 Features to implement:
-
-- Revoke jwt token after user create another
 
 - Better way to send json responses
 
 - Implement ESLint
 
 - Landing page with react
-
-- User creation page
-
-- User login
 
 
 ### Please generate the private key on the api/v1 directory
