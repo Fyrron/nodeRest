@@ -5,7 +5,10 @@ module.exports = {
     getAllUsers : async (req, res) => {
         try {
             const results = await User.findAll();
-            res.status(200).json(results)
+            res.status(200).json({
+                'success': true,
+                'response': results
+            })
         } catch (err) {
             res.status(500).json({
                 'success': false,
@@ -21,8 +24,10 @@ module.exports = {
                     id: req.params.id
                 }
             });
-        
-            res.status(200).json(results)
+            res.status(200).json({
+                'success': true,
+                'response': results
+            })
         } catch (err) {
             res.status(500).json({
                 'success': false,
@@ -38,8 +43,10 @@ module.exports = {
                     email: req.params.email
                 }
             });
-
-            res.status(200).json(results)
+            res.status(200).json({
+                'success': true,
+                'response': results
+            })
         } catch (err) {
             res.status(500).json({
                 'success': false,
