@@ -5,15 +5,14 @@ services:
       context: ./src/api/v1
       dockerfile: ./Dockerfile
     ports:
-      - 4000:3000
+      - 8080:8080
     volumes:
       - ./src/api/v1:/usr/src/app/api
       - /usr/src/app/api/node_modules
     environment:
-      PORT: 3000
+      PORT: 8080
     depends_on:
       - db
-
   db:
     image: mysql:latest
     restart: always

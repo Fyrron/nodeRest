@@ -1,8 +1,7 @@
-const express = require('express')
-const router = express.Router()
-
+const router = require('express').Router()
+const validation = require('../middlewares/tokenValidation')
 const controller = require('../controllers/tokenController')
 
-router.post('/', controller.generateTokenUser)
+router.post('/', [validation, controller.generateTokenUser])
 
 module.exports = router

@@ -9,17 +9,12 @@ app.use(express.urlencoded({ extended: true }))
 const userRoute = require('./routes/user')
 const tokenRoute = require('./routes/token')
 
-const userValidation = require('./middlewares/userValidation')
-const tokenValidation = require('./middlewares/tokenValidation')
-
-const auth = require('./auth/auth')
-
 app.use('/api', cors())
 
-app.use('/api/token', [tokenValidation, tokenRoute])
+app.use('/api/token', tokenRoute)
 
-app.use('/api/users', [auth, userValidation, userRoute])
+app.use('/api/users', userRoute)
 
 app.listen(process.env.PORT, () => {
-    console.log('Server is up on port 4000.')
+    console.log(`Server is up on port ${process.env.PORT}`)
 })

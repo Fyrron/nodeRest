@@ -1,18 +1,18 @@
-const express = require('express')
-const router = express.Router()
-
+const router = require('express').Router()
+const auth = require('../auth/auth')
+const validation = require('../middlewares/userValidation')
 const controller = require('../controllers/userController')
 
-router.get('/', controller.getAllUsers)
+router.get('/', [auth, validation, controller.getAllUsers])
 
-router.post('/', controller.createUser)
+router.post('/', [validation, controller.createUser])
 
-router.put('/:id', controller.updateUser)
+router.put('/:id', [auth, validation, controller.updateUser])
 
-router.get('/:id', controller.getUserById)
+router.get('/:id', [auth, validation, controller.getUserById])
 
-router.delete('/:id', controller.deleteUser)
+router.delete('/:id', [auth, validation, controller.deleteUser])
 
-router.get('/email/:email', controller.getUserByEmail)
+router.get('/email/:email', [auth, validation, controller.getUserByEmail])
 
 module.exports = router
