@@ -1,7 +1,7 @@
 FROM node:alpine
 
 # Set working directory
-WORKDIR /usr/src/project/api
+WORKDIR /usr/src/project/app
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
