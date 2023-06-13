@@ -7,12 +7,23 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - ./src/api/v1:/usr/src/app/api
-      - /usr/src/app/api/node_modules
+      - ./src/api/v1:/usr/src/project/api
     environment:
       PORT: 8080
     depends_on:
       - db
+  app:
+    build:
+      context: ./src/app
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./src/app:/usr/src/project/app
+    environment:
+      PORT: 3000
+    depends_on:
+      - api
   db:
     image: mysql:latest
     restart: always
