@@ -14,6 +14,8 @@ Features done:
 
 Currently working on:
 
+- Creating frontend with react
+
 - User creation page
 
 - User login
