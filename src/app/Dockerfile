@@ -13,5 +13,4 @@ RUN npm ci
 # Copy source code
 COPY . .
 
-#CMD ["npm", "start"]
-CMD ["npm", "run", "dev"]
+CMD ["npm", "start"]
